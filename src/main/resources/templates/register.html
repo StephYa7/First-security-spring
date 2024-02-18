@@ -14,20 +14,17 @@
 
     <form method="post" role="form" th:action="@{/register/save}" th:object="${user}">
 
-        <label class="form-label">Имя</label>
-        <input class="form-control" id="username" name="username" placeholder="Введите имя" th:field="*{getUsername}"
-            type="text" />
-        <p th:errors="*{getUsername}" class="text-danger" th:if="${#fields.hasErrors('username')}">
+        <label>Имя</label>
+        <input id="username" name="username" placeholder="Введите имя" th:field="*{username}" type="text" />
+        <p th:errors="*{username}" class="text-danger" th:if="${#fields.hasErrors('username')}">
         </p>
 
-        <label class="form-label">Email</label>
-        <input class="form-control" id="email" name="email" placeholder="Enter email address" th:field="*{email}"
-            type="email" />
+        <label>Email</label>
+        <input id="email" name="email" placeholder="Enter email address" th:field="*{email}" type="email" />
         <p th:errors="*{email}" class="text-danger" th:if="${#fields.hasErrors('email')}"></p>
 
-        <label class="form-label">Пароль</label>
-        <input class="form-control" id="password" name="password" placeholder="Enter password" th:field="*{password}"
-            type="password" />
+        <label>Пароль</label>
+        <input id="password" name="password" placeholder="Enter password" th:field="*{password}" type="password" />
         <p th:errors="*{password}" class="text-danger" th:if="${#fields.hasErrors('password')}"></p>
 
         <button class="btn btn-primary" type="submit">Регистроация</button>

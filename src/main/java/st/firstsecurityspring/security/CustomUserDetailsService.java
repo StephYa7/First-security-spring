@@ -11,6 +11,7 @@ import st.firstsecurityspring.models.User;
 import st.firstsecurityspring.repositories.UserRepository;
 
 import java.util.Collection;
+import java.util.Collections;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
@@ -28,15 +29,15 @@ public class CustomUserDetailsService implements UserDetailsService {
         if (user != null) {
             return new org.springframework.security.core.userdetails.User(user.getEmail(),
                     user.getPassword(),
-                    mapRolesToAuthorities(user.getRoles()));
-        }else{
+                    mapRolesToAuthorities(Collections.singleton(user.getRole())));
+        } else {
             throw new UsernameNotFoundException("Invalid username or password.");
         }
     }
 
-    private Collection< ? extends GrantedAuthority> mapRolesToAuthorities(Collection <Role> roles) {
+    private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles) {
         return roles.stream()
-                .map(role -> new SimpleGrantedAuthority(role.getName()))
+                .map(role -> new SimpleGrantedAuthority(role.name()))
                 .toList();
     }
 }

@@ -7,14 +7,27 @@
 </head>
 
 <body>
+    <div th:if="${userRole} == ROLE_ADMIN">
+        <p>Ваш уровень прав позволяет просматривать:</p>
+        <a href="/users">Список всех аккаунтов</a>
+        </br>
+        <a href="/logout">Выход из аккаунта</a>
 
-    Вы
+    </div>
 
-    </br>
+    <div th:if="${userRole} == ROLE_USER">
+        <p>Ваш уровень прав позволяет:</p>
+        <p>Ничего, ты в России</p>
+        </br>
+        <a href="/logout">Выход из аккаунта</a>
+    </div>
 
-    <a href="/register">Регистрация</a>
-    <a href="/login">Вход</a>
-
+    <div th:if="${userRole} == null">
+        <p>Вы не зарегестрированны</p>
+        <a href="/login">Вход</a>
+        </br>
+        <a href="/register">Регистрация</a>
+    </div>
 </body>
 
 </html>

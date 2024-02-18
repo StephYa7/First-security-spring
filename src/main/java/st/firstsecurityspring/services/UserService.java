@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import st.firstsecurityspring.dto.UserDto;
 import st.firstsecurityspring.models.Role;
 import st.firstsecurityspring.models.User;
-import st.firstsecurityspring.repositories.RoleRepository;
 import st.firstsecurityspring.repositories.UserRepository;
 
 import java.util.List;
@@ -14,14 +13,11 @@ import java.util.List;
 public class UserService {
 
     private final UserRepository userRepository;
-    private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
 
     public UserService(UserRepository userRepository,
-                       RoleRepository roleRepository,
                        PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
-        this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -30,12 +26,7 @@ public class UserService {
         user.setName(userDto.getUsername());
         user.setEmail(userDto.getEmail());
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
-
-        Role role = roleRepository.findByName("ROLE_ADMIN");
-        if (role == null) {
-            role = checkRoleExist();
-        }
-        user.setRoles(List.of(role));
+        user.setRole(Role.ROLE_USER);
         userRepository.save(user);
     }
 
@@ -55,11 +46,5 @@ public class UserService {
         userDto.setUsername(user.getName());
         userDto.setEmail(user.getEmail());
         return userDto;
-    }
-
-    private Role checkRoleExist() {
-        Role role = new Role();
-        role.setName("ROLE_ADMIN");
-        return roleRepository.save(role);
     }
 }

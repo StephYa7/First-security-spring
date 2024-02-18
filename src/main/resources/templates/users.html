@@ -7,28 +7,18 @@
 </head>
 
 <body>
-
-
     <h2>Список зарегестрированных юзеров</h2>
 
-
     <table class="table table-bordered table-hover">
-        <thead class="table-dark">
-            <tr>
-                <th>Имя</th>
-                <th>Фамилия</th>
-                <th>Email</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="user : ${users}">
-                <td th:text="${user.getUsername}"></td>
-                <td th:text="${user.lastName}"></td>
-                <td th:text="${user.email}"></td>
-            </tr>
-        </tbody>
+        <tr>
+            <th>Имя</th>
+            <th>Email</th>
+        </tr>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.username}"></td>
+            <td th:text="${user.email}"></td>
+        </tr>
     </table>
-
 
 </body>
 
