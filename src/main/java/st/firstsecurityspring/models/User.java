@@ -20,20 +20,19 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "username", unique = true)
-    @Size(max = 50, message = "Поле \"Имя\" должно быть короче 50 символов!")
-    @NotEmpty(message = "Поле \"Имя\" не должно быть пустым!")
-    private String username;
+    @Column(name = "name", unique = true, nullable = false)
+    private String name;
 
-    @Column(name = "password")
-    @Size(max = 50, message = "Поле \"Пароль\" должно быть короче 50 символов!")
-    @NotEmpty(message = "Поле \"Пароль\" не должно быть пустым!")
+    @Column(name = "email", nullable = false, unique = true)
+    private String email;
+
+    @Column(name = "password", nullable = false)
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name = "users_roles",
-            joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")},
-            inverseJoinColumns = {@JoinColumn(name = "ROLE_ID", referencedColumnName = "ID")})
+            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")})
     private List<Role> roles = new ArrayList<>();
 }

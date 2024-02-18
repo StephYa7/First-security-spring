@@ -1,28 +1,14 @@
 package st.firstsecurityspring.services;
 
-import org.springframework.stereotype.Service;
+import st.firstsecurityspring.dto.UserDto;
 import st.firstsecurityspring.models.User;
-import st.firstsecurityspring.repositories.UserRepository;
 
-import java.util.Optional;
+import java.util.List;
 
-@Service
-public class UserService {
-    UserRepository userRepository;
+public interface UserService {
+    void saveUser(UserDto userDto);
 
-    public void getAllUsers() {
-        userRepository.findAll();
-    }
+    User findUserByEmail(String email);
 
-    public void getUserById(int id) {
-        userRepository.findById(id);
-    }
-
-    public Optional<User> findByUsername(String username) {
-        return userRepository.findByUsername(username);
-    }
-
-    public User save(User myUser) {
-        return userRepository.save(myUser);
-    }
+    List<UserDto> findAllUsers();
 }

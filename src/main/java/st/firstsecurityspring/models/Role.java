@@ -11,16 +11,16 @@ import java.util.List;
 @AllArgsConstructor
 @Data
 @Entity
-@Table(name="roles")
-public class Role
-{
-     @Id
-     @GeneratedValue(strategy = GenerationType.IDENTITY)
-     private Long id;
+@Table(name = "roles")
+public class Role {
+    @Column(name = "id")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-     @Column(nullable=false, unique=true)
-     private String name;
+    @Column(name = "name", nullable = false, unique = true)
+    private String name;
 
-     @ManyToMany(mappedBy="roles")
-     private List<User> users;
+    @ManyToMany(mappedBy = "roles")
+    private List<User> users;
 }
