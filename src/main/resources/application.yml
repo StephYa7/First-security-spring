@@ -1,0 +1,20 @@
+spring:
+  sql:
+    init:
+      mode: always
+  jpa:
+    show-sql: true
+    defer-datasource-initialization: true
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: update
+      ddl-auto: update
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:3367/security_users_db
+    username: admin
+    password: password
+
+#jwt-token-secret: f4389fhj
+#jwt-token-lifetime: 60000
