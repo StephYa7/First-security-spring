@@ -2,6 +2,7 @@ package st.firstsecurityspring.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 
 @Data
@@ -12,10 +13,8 @@ public class UserDto {
     private Long id;
 
     @NotEmpty
-    private String firstName;
-
-    @NotEmpty
-    private String lastName;
+    @Size(min = 2, max = 50)
+    private String username;
 
     @NotEmpty(message = "Email should not be empty")
     @Email
