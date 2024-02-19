@@ -16,8 +16,8 @@
 
         <label>Имя</label>
         <input id="username" name="username" placeholder="Введите имя" th:field="*{username}" type="text" />
-        <p th:errors="*{username}" class="text-danger" th:if="${#fields.hasErrors('username')}">
-        </p>
+        <p th:errors="*{username}" class="text-danger" th:if="${#fields.hasErrors('username')}"></p>
+
 
         <label>Email</label>
         <input id="email" name="email" placeholder="Enter email address" th:field="*{email}" type="email" />

@@ -1,5 +1,6 @@
 package st.firstsecurityspring.security;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,9 +15,9 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
+@AllArgsConstructor
 public class SpringSecurity {
 
-    @Autowired
     private UserDetailsService userDetailsService;
 
     @Bean
@@ -24,6 +25,14 @@ public class SpringSecurity {
         return new BCryptPasswordEncoder();
     }
 
+    /**
+     * Задает разрешения на доступ к URL-адресам приложения,
+     * проверку предоставленных имени пользователя и пароля,
+     * перенаправление на форму входа.
+     * * @param http the http
+     * @return the security filter chain
+     * @throws Exception the exception
+     */
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
@@ -48,6 +57,11 @@ public class SpringSecurity {
         return http.build();
     }
 
+    /**
+     * Меняет стандартную реализацию процесса аутентификации и кодирование пароля.
+     * @param auth the auth
+     * @throws Exception the exception
+     */
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth

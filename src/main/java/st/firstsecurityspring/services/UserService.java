@@ -47,4 +47,8 @@ public class UserService {
         userDto.setEmail(user.getEmail());
         return userDto;
     }
+
+    public User findUserByName(String name) {
+        return userRepository.findByName(name);
+    }
 }
