@@ -1,5 +1,6 @@
 package st.firstsecurityspring.security;
 
+import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,19 +15,10 @@ import java.util.Collection;
 import java.util.Collections;
 
 @Service
+@AllArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
 
     private final UserRepository userRepository;
-
-    /**
-     * Instantiates a new Custom user details service.
-     *
-     * @param userRepository the user repository
-     */
-    public CustomUserDetailsService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
-
 
     /**
      * Используется для загрузки информации о пользователе по его электронной почте.
@@ -35,7 +27,7 @@ public class CustomUserDetailsService implements UserDetailsService {
      * содержащий информацию о пользователе (электронная почта, пароль и роли).
      * В случае, если пользователь не найден, генерируется исключение UsernameNotFoundException
      *
-     * @param email
+     * @param email user email
      */
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -53,7 +45,6 @@ public class CustomUserDetailsService implements UserDetailsService {
     /**
      * Используется для преобразования ролей пользователя в объекты SimpleGrantedAuthority,
      * которые представляют разрешения пользователя в Spring Security
-     *
      * @param role the role from user
      */
     private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Role role) {
