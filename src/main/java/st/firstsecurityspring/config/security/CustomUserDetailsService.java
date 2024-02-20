@@ -1,4 +1,4 @@
-package st.firstsecurityspring.security;
+package st.firstsecurityspring.config.security;
 
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;

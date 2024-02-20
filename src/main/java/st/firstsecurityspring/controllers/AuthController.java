@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import st.firstsecurityspring.dto.UserDto;
 import st.firstsecurityspring.models.User;
 import st.firstsecurityspring.services.UserService;
+import st.firstsecurityspring.util.TrackUserAction;
 
 import java.util.List;
 
@@ -30,6 +31,7 @@ public class AuthController {
      * @param model Модель для передачи данных в представление.
      * @return Строка с именем представления "index".
      */
+    @TrackUserAction
     @GetMapping("/")
     public String home(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -43,6 +45,7 @@ public class AuthController {
         return "index";
     }
 
+    @TrackUserAction
     @GetMapping("/login")
     public String login() {
         return "login";
@@ -55,6 +58,7 @@ public class AuthController {
      * @param model Модель для передачи данных в представление.
      * @return Строка с именем представления "register".
      */
+    @TrackUserAction
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
         UserDto user = new UserDto();
@@ -72,6 +76,7 @@ public class AuthController {
      * @param model   Модель для передачи данных в представление.
      * @return Строка с перенаправлением на страницу "register?success" в случае успешной регистрации.
      */
+    @TrackUserAction
     @PostMapping("/register/save")
     public String registration(@Valid @ModelAttribute("user") UserDto userDto,
                                BindingResult result,
@@ -94,7 +99,6 @@ public class AuthController {
                     "There is already an account registered with the same user name");
         }
         if (result.hasErrors()) {
-            System.out.println("44444");
             model.addAttribute("username", userDto);
             return "/register";
         }
@@ -109,6 +113,7 @@ public class AuthController {
      * @param model Модель для передачи данных в представление.
      * @return Строка с именем представления "users".
      */
+    @TrackUserAction
     @GetMapping("/users")
     public String users(Model model) {
         List<UserDto> users = userService.findAllUsers();
