@@ -9,28 +9,26 @@
 <body>
 
 
-
-    <div th:if="${param.error}">
-
-        <div style="color:red">Неправильный логин или пароль</div>
-    </div>
+<div th:if="${param.error}">
+    <div style="color:red">Неправильный логин или пароль</div>
+</div>
 
 
-    <form method="post" th:action="@{/login}">
+<form method="post" th:action="@{/login}">
 
-        <label> Почта</label>
-        <input type="text" id="username" name="username" placeholder="Введите имя" />
+    <label> Почта</label>
+    <input type="text" id="username" name="username" placeholder="Введите имя"/>
 
-        <label> Парль</label>
-        <input type="password" id="password" name="password" placeholder="Введите пароль" />
+    <label> Парль</label>
+    <input type="password" id="password" name="password" placeholder="Введите пароль"/>
 
-        <button type="submit" class="btn btn-primary">Подтвердить</button>
-        <a th:href="@{/register}">Регистрация</a>
+    <button type="submit">Подтвердить</button>
 
-    </form>
+</form>
 
-
-
+<form action="/register" target="_blank">
+    <button>Регистрация</button>
+</form>
 
 </body>
 

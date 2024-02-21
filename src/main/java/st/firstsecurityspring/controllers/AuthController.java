@@ -81,20 +81,21 @@ public class AuthController {
     public String registration(@Valid @ModelAttribute("user") UserDto userDto,
                                BindingResult result,
                                Model model) {
-        User existingUserByEmail = userService.findUserByEmail(userDto.getEmail());
 
-        if (existingUserByEmail != null && existingUserByEmail.getEmail() != null && !existingUserByEmail.getEmail().isEmpty()) {
+        User existingUserByEmail = userService.findUserByEmail(userDto.getEmail());
+        if (existingUserByEmail != null && existingUserByEmail.getEmail() != null
+                && !existingUserByEmail.getEmail().isEmpty()) {
             result.rejectValue("email", null,
                     "There is already an account registered with the same email");
         }
-
         if (result.hasErrors()) {
             model.addAttribute("user", userDto);
             return "/register";
         }
 
         User existingUserByName = userService.findUserByName(userDto.getUsername());
-        if (existingUserByName != null && existingUserByName.getName() != null && !existingUserByName.getName().isEmpty()) {
+        if (existingUserByName != null && existingUserByName.getName() != null
+                && !existingUserByName.getName().isEmpty()) {
             result.rejectValue("username", null,
                     "There is already an account registered with the same user name");
         }
@@ -102,6 +103,7 @@ public class AuthController {
             model.addAttribute("username", userDto);
             return "/register";
         }
+
         userService.saveUser(userDto);
         return "redirect:/";
     }
