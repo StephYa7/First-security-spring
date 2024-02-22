@@ -59,7 +59,7 @@ public class SpringSecurity {
 
     /**
      * Меняет стандартную реализацию процесса аутентификации и кодирование пароля.
-     * @param auth the auth
+     * @param auth the AuthenticationManagerBuilder
      * @throws Exception the exception
      */
     @Autowired
