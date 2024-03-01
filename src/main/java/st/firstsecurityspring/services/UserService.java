@@ -37,7 +37,7 @@ public class UserService {
                 .toList();
     }
 
-    private UserDto mapToUserDto(User user) {
+    public UserDto mapToUserDto(User user) {
         UserDto userDto = new UserDto();
         userDto.setUsername(user.getName());
         userDto.setEmail(user.getEmail());

@@ -10,7 +10,7 @@
 <div th:if="${userRole} == ROLE_ADMIN">
     <p>Ваш уровень прав позволяет просматривать:</p>
     <a href="/users">Список всех аккаунтов</a>
-    </br>
+    <br>
     <form th:action="@{/logout}" th:method="POST">
         <button type="submit">Logout</button>
     </form>
@@ -20,7 +20,7 @@
 <div th:if="${userRole} == ROLE_USER">
     <p>Ваш уровень прав позволяет:</p>
     <p>Ничего, ты в России</p>
-    </br>
+    <br>
 
     <form th:action="@{/logout}" th:method="POST">
         <button type="submit">Logout</button>
@@ -31,7 +31,7 @@
 <div th:if="${userRole} == null">
     <p>Вы не зарегестрированны</p>
     <a href="/login">Вход</a>
-    </br>
+    <br>
     <a href="/register">Регистрация</a>
 </div>
 </body>

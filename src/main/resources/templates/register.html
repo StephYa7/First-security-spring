@@ -16,16 +16,16 @@
 
         <label>Имя</label>
         <input id="username" name="username" placeholder="Введите имя" th:field="*{username}" type="text" />
-        <p th:errors="*{username}" class="text-danger" th:if="${#fields.hasErrors('username')}"></p>
+        <p style="color:red" th:errors="*{username}" class="text-danger" th:if="${#fields.hasErrors('username')}"></p>
 
 
         <label>Email</label>
         <input id="email" name="email" placeholder="Enter email address" th:field="*{email}" type="email" />
-        <p th:errors="*{email}" class="text-danger" th:if="${#fields.hasErrors('email')}"></p>
+        <p style="color:red" th:errors="*{email}" class="text-danger" th:if="${#fields.hasErrors('email')}"></p>
 
         <label>Пароль</label>
         <input id="password" name="password" placeholder="Enter password" th:field="*{password}" type="password" />
-        <p th:errors="*{password}" class="text-danger" th:if="${#fields.hasErrors('password')}"></p>
+        <p style="color:red" th:errors="*{password}" class="text-danger" th:if="${#fields.hasErrors('password')}"></p>
 
         <button class="btn btn-primary" type="submit">Регистроация</button>
 
